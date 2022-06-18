@@ -1,0 +1,26 @@
+<%- include('../user/includes/head.ejs') %>
+    <div class="row">
+        <div class="col-md-6">
+            <form action="update_profile" method="post">
+                <div class="mb-3 row">
+                    <label for="name" class="col-sm-2 col-form-label">Name</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="name" value="<%= user.name%>" required>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+                    <div class="col-sm-10">
+                        <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="<%= user.email%>">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label class="col-sm-2 col-form-label"></label>
+                    <div class="col-sm-10">
+                        <input class="btn btn-dark" type="submit" value="Update">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <%- include('../user/includes/end.ejs') %>

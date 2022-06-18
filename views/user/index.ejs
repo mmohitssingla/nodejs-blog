@@ -1,0 +1,21 @@
+<%- include('../user/includes/head.ejs') %>
+
+    <div class="row">
+        <div class="col md-12">
+            <ul class="article-list">
+                <% if(posts.length > 0) {%>
+                    <% for(let post of posts) {%>
+                        <li class="article_title">
+                            <a href="javascript:">
+                                <%= post.title%>
+                            </a>
+                        </li>
+                        <% } %>
+                            <%} else {%>
+                                <h4>No post available!</h4>
+                                <%}%>
+
+            </ul>
+        </div>
+    </div>
+    <%- include('../user/includes/end.ejs') %>
