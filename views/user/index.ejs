@@ -1,21 +1,26 @@
 <%- include('../user/includes/head.ejs') %>
 
-    <div class="row">
-        <div class="col md-12">
-            <ul class="article-list">
-                <% if(posts.length > 0) {%>
-                    <% for(let post of posts) {%>
-                        <li class="article_title">
-                            <a href="javascript:">
-                                <%= post.title%>
-                            </a>
-                        </li>
-                        <% } %>
-                            <%} else {%>
-                                <h4>No post available!</h4>
-                                <%}%>
-
-            </ul>
-        </div>
+    <div class="row product-list">
+        <% if(products.length > 0) {%>
+            <% for(let product of products) {%>
+                <div class="col-md-4 product">
+                    <img src="https://coastaire.com.au/wp-content/uploads/2017/02/dummy-product.jpg" width="200" height="150" alt="product image">
+                    <br>
+                    <br>
+                    <h3>
+                        <%= product.name%>
+                    </h3>
+                    <h4>
+                        Rs.
+                        <%= product.price%>
+                    </h4>
+                    <a href="/add_to_cart/<%= product.id%>">Add to cart</a>
+                </div>
+                <% } %>
+                    <%} else {%>
+                        <div class="col md-12">
+                            <h4>No product available!</h4>
+                        </div>
+                        <%}%>
     </div>
     <%- include('../user/includes/end.ejs') %>

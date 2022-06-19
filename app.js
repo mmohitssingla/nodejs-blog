@@ -4,8 +4,11 @@ const app = express();
 
 const sequelize = require('./config/database');
 const User = require('./models/user');
-const Post = require('./models/post');
+const Product = require('./models/product');
+const Cart = require('./models/cart');
+const CartItem = require('./models/cart_item');
 const userRoutes = require('./routes/user');
+const adminRoutes = require('./routes/admin');
 
 app.set('view engine', 'ejs');
 
@@ -21,9 +24,12 @@ app.use((req, res, next) => {
 });
 
 app.use(userRoutes);
+app.use('/admin', adminRoutes);
 
-Post.belongsTo(User, { constraints: true, onDelete: 'CASCADE' });
-User.hasMany(Post);
+User.hasOne(Cart);
+Cart.belongsTo(User);
+Cart.belongsToMany(Product, { through: CartItem });
+Product.belongsToMany(Cart, { through: CartItem });
 
 
 sequelize

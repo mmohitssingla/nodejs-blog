@@ -1,14 +1,17 @@
 const User = require("../models/user");
-const Post = require("../models/post");
+const Product = require("../models/product");
 
 exports.index = (req, res, next) => {
-    req.user.getPosts({ order: [
+    Product.findAll({
+        order: [
             ['createdAt', 'DESC']
-        ] }).then(posts => {
+        ],
+        where: { in_stock: 1 }
+    }).then(products => {
         res.render('user/index', {
             page_title: 'Home',
-            heading: 'Article List',
-            posts: posts
+            heading: 'Product List',
+            products: products
         });
     })
 }
@@ -41,27 +44,4 @@ exports.update_profile = (req, res, next) => {
         .catch(err => {
             console.log(err);
         })
-}
-
-exports.add_post = (req, res, next) => {
-    res.render('user/add_post', {
-        page_title: 'Add Post',
-        heading: 'Add New Post'
-    });
-}
-
-exports.save_post = (req, res, next) => {
-    const title = req.body.title;
-    const content = req.body.content;
-    req.user.createPost({
-            title: title,
-            content: content
-        })
-        .then(result => {
-            res.redirect('/');
-        })
-        .catch(err => {
-            console.log(err);
-        })
-
 }

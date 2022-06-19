@@ -1,0 +1,35 @@
+<%- include('../admin/includes/head.ejs') %>
+    <div class="row">
+        <div class="col-md-6">
+            <form action="/admin/update_product" method="post">
+                <input type="hidden" name="product_id" value="<%= product.id%>">
+                <div class="mb-3 row">
+                    <label for="name" class="col-sm-2 col-form-label">Name</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="name" value="<%=product.name%>" required>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="price" class="col-sm-2 col-form-label">Price</label>
+                    <div class="col-sm-10">
+                        <input type="number" step=".01" class="form-control" name="price" value="<%=product.price%>" required>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="in_stock" class="col-sm-2 col-form-label">In Stock?</label>
+                    <div class="col-sm-10">
+                        <select name="in_stock" id="in_stock" class="form-control" required>
+                            <option value="1" <%if(product.in_stock == 1){ %>selected<% }%>>Yes</option>
+                            <option value="0" <%if(product.in_stock == 0){ %>selected<% }%>>No</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <div class="col-sm-10">
+                        <input class="btn btn-dark" type="submit" value="Update Product">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <%- include('../admin/includes/end.ejs') %>
